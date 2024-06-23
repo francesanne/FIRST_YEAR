@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-4 px-6 flex justify-between items-center fixed top-0 w-full z-50">
+        <div class="greeting">
+            <p id="greeting"></p>
+        </div>
+
+        <div class="header-icons">
+            <div class="profile-icon relative">
+                <i id="profileIcon" alt="Profile" class="material-icons">person</i>
+                <div
+                    class="dropdown-content absolute hidden right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
+                    id="profileDropdown">
+                    <a href="profile.html"
+                        class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                    <a href="login.html"
+                        class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a>
+                </div>
+            </div>
+
+            <div class="theme-icon relative">
+                <i id="themeToggle" class="material-icons">brightness_4</i>
+                <div
+                    class="dropdown-content absolute hidden right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
+                    id="themeDropdown">
+                    <a  href="#" id="lightMode" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Light Mode</a>
+                    <a href="#" id="darkMode" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Dark Mode</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <iframe src="aside.html" frameborder="0" scrolling="no" class="w-64 h-full fixed top-16 left-0 z-40"></iframe>
+
+    <div class="content ml-64 py-16">
+        <div class="text-center text-4xl font-bold">
+            Welcome<br> to my<br> website!
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>
+

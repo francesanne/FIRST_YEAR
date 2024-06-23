@@ -1,0 +1,20 @@
+#include <stdio.h>
+int isEven(int num);
+
+int main()
+{
+    int n, result;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    result = isEven(n);
+
+    printf("%d ")
+}
+
+
+int isEven(int num){
+
+    return
+}

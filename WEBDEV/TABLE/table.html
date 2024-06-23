@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information</title>
+</head>
+
+<style>
+    
+</style>
+
+<script>
+    function loadlist() {
+        var list = [{
+            id: 1,
+            firstname: "John",
+            lastname: "Doe",
+            course: "BSIT"
+        }, {
+            id: 2,
+            firstname: "Jane",
+            lastname: "Smith",
+            course: "BSCS"
+        }];
+
+        var tbody = document.querySelector('#table-content tbody');
+
+        tbody.innerHTML = ''; 
+        list.forEach(function(student) {
+            var row = document.createElement('tr');
+            row.innerHTML = `
+                <td contenteditable="true">${student.id}</td>
+                <td contenteditable="true">${student.firstname}</td>
+                <td contenteditable="true">${student.lastname}</td>
+                <td contenteditable="true">${student.course}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function saveChanges() {
+        var tbody = document.querySelector('#table-content tbody');
+        var rows = tbody.querySelectorAll('tr');
+
+        rows.forEach(function(row) {
+            var cells = row.querySelectorAll('td');
+            var student = {
+                id: cells[0].textContent,
+                firstname: cells[1].textContent,
+                lastname: cells[2].textContent,
+                course: cells[3].textContent
+            };
+            console.log(student); 
+        });
+    }
+</script>
+
+<body>
+    <table id="table-content">
+        <thead>
+            <tr>
+                <th>ID Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Course</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <div style="width:100%;">
+        <button onclick="loadlist()">Load List</button>
+        <button onclick="saveChanges()">Save Changes</button>
+    </div>
+</body>
+</html>

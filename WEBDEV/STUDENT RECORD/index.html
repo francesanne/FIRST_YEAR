@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Records</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .form-container {
+    width: 48%;
+  }
+  .records-container {
+    width: 48%;
+    overflow-y: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #333;
+    color: white;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  input[type="submit"] {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: #555;
+  }
+  .btn {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 3px;
+  }
+  .btn:hover {
+    background-color: #555;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="form-container">
+    <h2>Student Form</h2>
+    <form id="student-form">
+      <input type="text" id="idNumber" placeholder="ID Number" required><br>
+      <input type="text" id="firstName" placeholder="First Name" required><br>
+      <input type="text" id="lastName" placeholder="Last Name" required><br>
+      <input type="text" id="course" placeholder="Course" required><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  
+  <div class="records-container">
+    <h2>Student Records</h2>
+    <table id="records-table">
+      <thead>
+        <tr>
+          <th>ID Number</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Course</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="records-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.getElementById('student-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    addStudentRecord();
+  });
+
+  function addStudentRecord() {
+    var idNumber = document.getElementById('idNumber').value;
+    var firstName = document.getElementById('firstName').value;
+    var lastName = document.getElementById('lastName').value;
+    var course = document.getElementById('course').value;
+
+    var table = document.getElementById('records-body');
+    var newRow = table.insertRow();
+
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    var cell3 = newRow.insertCell(2);
+    var cell4 = newRow.insertCell(3);
+    var cell5 = newRow.insertCell(4);
+
+    cell1.innerHTML = idNumber;
+    cell2.innerHTML = firstName;
+    cell3.innerHTML = lastName;
+    cell4.innerHTML = course;
+    cell5.innerHTML = '<button class="btn" onclick="editRecord(this)">Edit</button> <button class="btn" onclick="deleteRecord(this)">Delete</button>';
+  }
+
+  function editRecord(btn) {
+    var row = btn.parentNode.parentNode;
+    var cells = row.getElementsByTagName('td');
+    document.getElementById('idNumber').value = cells[0].innerHTML;
+    document.getElementById('firstName').value = cells[1].innerHTML;
+    document.getElementById('lastName').value = cells[2].innerHTML;
+    document.getElementById('course').value = cells[3].innerHTML;
+    row.remove();
+  }
+
+  function deleteRecord(btn) {
+    var row = btn.parentNode.parentNode;
+    row.remove();
+  }
+</script>
+
+</body>
+</html>

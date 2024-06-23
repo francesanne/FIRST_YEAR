@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        td:hover {
+            background-color: #f5f5f5;
+        }
+
+        td[contenteditable="true"] {
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #838383;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<script>
+    function loadlist() {
+        var list = [{
+            id: 1,
+            firstname: "John",
+            lastname: "Doe",
+            course: "BSIT"
+        }, {
+            id: 2,
+            firstname: "Jane",
+            lastname: "Smith",
+            course: "BSCS"
+
+        }, {
+            id: 3,
+            firstname: "Frances",
+            lastname: "Rico",
+            course: "BSCS"
+        }];
+
+        var tbody = document.querySelector('#table-content tbody');
+
+        tbody.innerHTML = ''; 
+        list.forEach(function(student) {
+            var row = document.createElement('tr');
+            row.innerHTML = `
+                <td contenteditable="true">${student.id}</td>
+                <td contenteditable="true">${student.firstname}</td>
+                <td contenteditable="true">${student.lastname}</td>
+                <td contenteditable="true">${student.course}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function saveChanges() {
+        var tbody = document.querySelector('#table-content tbody');
+        var rows = tbody.querySelectorAll('tr');
+
+        var updatedList = []; 
+        rows.forEach(function(row) {
+            var cells = row.querySelectorAll('td');
+            var updatedStudent = {
+                id: cells[0].textContent,
+                firstname: cells[1].textContent,
+                lastname: cells[2].textContent,
+                course: cells[3].textContent
+            };
+            updatedList.push(updatedStudent); 
+        });
+
+       
+        console.log(updatedList);
+
+    }
+</script>
+
+<body>
+    <table id="table-content">
+        <thead>
+            <tr>
+                <th>ID Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Course</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <div style="width:100%;">
+        <button onclick="loadlist()">Load List</button>
+        <button onclick="saveChanges()">Save Changes</button>
+    </div>
+</body>
+</html>

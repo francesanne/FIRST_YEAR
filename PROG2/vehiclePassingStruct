@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_BRAND_LENGTH 100
+
+// Define the Vehicle structure
+struct Vehicle {
+    char brand[MAX_BRAND_LENGTH];
+    int speed; // in km/hr
+};
+
+// Function prototype
+int timeCompute(struct Vehicle vehicle, int distance);
+
+int main() {
+    // Declare a Vehicle structure variable
+    struct Vehicle vehicle1;
+
+    // Input vehicle details from the user
+    printf("Enter brand: ");
+    fgets(vehicle1.brand, sizeof(vehicle1.brand), stdin);
+    printf("Enter speed: ");
+    scanf("%d", &vehicle1.speed);
+    printf("Enter distance: ");
+    int distance;
+    scanf("%d", &distance);
+
+    // Calculate the time needed for the vehicle to reach the distance
+    int time = timeCompute(vehicle1, distance);
+
+    // Print the result
+    printf("It will take a %s vehicle %d minutes to reach a distance of %dkm.\n", vehicle1.brand, time, distance);
+
+    return 0;
+}
+
+// Function definition to compute the time needed to reach the distance
+int timeCompute(struct Vehicle vehicle, int distance) {
+    // Calculate time in minutes: distance / speed * 60
+    int time_in_minutes = (distance * 60) / vehicle.speed;
+    return time_in_minutes;
+}
